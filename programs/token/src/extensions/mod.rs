@@ -2,7 +2,7 @@ use crate::{
     from_bytes,
     state::{Mint, TokenAccount},
 };
-pub mod confidential_transfer;
+// pub mod confidential_transfer;
 pub mod cpi_guard;
 pub mod default_account_state;
 pub mod group_member_pointer;
@@ -10,7 +10,7 @@ pub mod group_pointer;
 pub mod immutable_owner;
 pub mod interest_bearing_mint;
 pub mod memo_transfer;
-#[cfg(feature = "std")]
+// #[cfg(feature = "std")]
 pub mod metadata;
 pub mod metadata_pointer;
 pub mod mint_close_authority;
@@ -362,7 +362,6 @@ mod tests {
         assert!(gmp.member_address.eq(&[2u8; 32]));
     }
 
-    #[cfg(feature = "std")]
     #[test]
     fn test_token_metadata() {
         use crate::extensions::get_extension_data_bytes_for_variable_pack;
