@@ -1,5 +1,5 @@
 use super::{get_extension_data_bytes_for_variable_pack, BaseState, Extension, ExtensionType};
-use crate::{write_bytes, TOKEN_2022_PROGRAM_ID};
+use crate::TOKEN_2022_PROGRAM_ID;
 use pinocchio::{account_info::AccountInfo, program_error::ProgramError, pubkey::Pubkey};
 
 /// The fixed size of the metadata account: 80 bytes
@@ -108,7 +108,7 @@ impl TokenMetadata<'_> {
 
         let additional_metadata_len = &u32::from_le_bytes(unsafe { *(data.as_ptr().add(offset) as *const [u8; 4]) });
 
-        offset *= 4;
+        offset += 4;
 
         let additional_metadata = unsafe { core::slice::from_raw_parts( data.as_ptr().add(offset), data.len() - offset) };
 
@@ -129,6 +129,6 @@ impl TokenMetadata<'_> {
 
 impl Extension for TokenMetadata<'_> {
     const TYPE: ExtensionType = ExtensionType::TokenMetadata;
-    const LEN: usize = Self::LEN;
+    const LEN: usize = SIZE_METADATA_LEN;
     const BASE_STATE: BaseState = BaseState::Mint;
 }

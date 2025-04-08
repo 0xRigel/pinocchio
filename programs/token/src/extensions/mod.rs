@@ -372,7 +372,7 @@ mod tests {
         )
         .unwrap();
 
-        let token_metadata = TokenMetadata::unpack_from_ext_bytes(token_metadata);
+        let token_metadata = TokenMetadata::from_bytes(token_metadata);
 
         assert!(token_metadata.is_ok());
 
